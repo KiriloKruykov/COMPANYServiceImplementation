@@ -34,6 +34,7 @@ public class Main {
 
     public static void main(String[] args) {
 
+//Create a object and Array List
 
         CompanyServiceImpl service = new CompanyServiceImpl();
 
@@ -47,7 +48,6 @@ public class Main {
         Company design = new Company(frontEnd,17);
         Company accounting = new Company(null,6);
 
-        // test 1 child must return chief
 
         System.out.println(service.getTopLevelParent(chief));
         System.out.println(service.getTopLevelParent(developer));
@@ -60,6 +60,7 @@ public class Main {
 
         Arrays.asList(chief,lawyer,developer,backEnd,frontEnd,devOps,design,accounting);
 
+//Finding a parent of a company.
 
         System.out.println("Parent company for company Chief is: \n"
                 + service.getTopLevelParent(chief));
@@ -78,5 +79,10 @@ public class Main {
         System.out.println("Parent company for company Accounting is: \n"
                 + service.getTopLevelParent(accounting));
 
+//Count employees of company and their childs.
+
+        System.out.println("Chief and childs employees: "+service.getEmployeeCountForCompanyAndChildren(chief, companies));
+        System.out.println("Accounting and childs employees: "+service.getEmployeeCountForCompanyAndChildren(accounting, companies));
+        System.out.println("Developer and childs employees: "+service.getEmployeeCountForCompanyAndChildren(developer, companies));
     }
 }

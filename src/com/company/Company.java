@@ -31,10 +31,14 @@ import java.util.List;
 import java.util.Objects;
 
 public class Company {
+
     // parent for this company nullable, when there is no parent for this company
+
     private Company parent;
     private long employeesCount;
+
 //Contructor.
+
     public Company() {
     }
 
@@ -42,7 +46,9 @@ public class Company {
         this.parent = parent;
         this.employeesCount = employeesCount;
     }
+
 //Getters , setters.
+
     public Company getParent() {
         return parent;
     }
@@ -58,12 +64,30 @@ public class Company {
     public void setEmployeesCount(long employeesCount) {
         this.employeesCount = employeesCount;
     }
+
 //toString.
+
     @Override
     public String toString() {
         return "Company{" +
                 "parent=" + parent +
                 ", employeesCount=" + employeesCount +
                 '}';
+    }
+
+//hashCode,equals
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Company company = (Company) o;
+        return employeesCount == company.employeesCount &&
+                parent.equals(company.parent);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(parent, employeesCount);
     }
 }

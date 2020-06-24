@@ -28,7 +28,9 @@
 package com.company;
 
 import java.util.List;
+
 //Implements
+
 public class CompanyServiceImpl implements ICompanyService {
     @Override
     public Company getTopLevelParent(Company child) {
@@ -49,6 +51,12 @@ public class CompanyServiceImpl implements ICompanyService {
     public long getEmployeeCountForCompanyAndChildren(Company company, List<Company> companies) {
 
 
-        return company.getEmployeesCount();
+        long employeeCount = company.getEmployeesCount();
+        for (int i = 0; i < companies.size(); i++) {
+            if (companies.get(i).getParent() == company){
+                employeeCount += getEmployeeCountForCompanyAndChildren(companies.get(i),companies);
+            }
+        }
+        return employeeCount;
     }
 }
